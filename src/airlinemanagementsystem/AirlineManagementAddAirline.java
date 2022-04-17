@@ -51,8 +51,8 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        javax.swing.JRadioButton jRadioButton2 = new javax.swing.JRadioButton();
+        arrivalSelection = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton departureSelection = new javax.swing.JRadioButton();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         resultPanelBox = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -231,11 +231,11 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
 
         jLabel2.setText("Mode");
 
-        jRadioButton1.setText("Arrival");
-        jRadioButton2.setText("Departure");
+        arrivalSelection.setText("Arrival");
+        departureSelection.setText("Departure");
         ButtonGroup bg = new ButtonGroup();
-        bg.add(jRadioButton1);
-        bg.add(jRadioButton2);
+        bg.add(arrivalSelection);
+        bg.add(departureSelection);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -251,9 +251,9 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1)
+                        .addComponent(arrivalSelection)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(departureSelection)))
                 .addContainerGap(683, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -266,8 +266,8 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(arrivalSelection)
+                    .addComponent(departureSelection))
                 .addContainerGap(268, Short.MAX_VALUE))
         );
 
@@ -536,7 +536,7 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton arrivalSelection;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel resultPanelBox;
