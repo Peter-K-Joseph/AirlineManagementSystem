@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
 /**
@@ -44,6 +47,9 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         resultPanelBox = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -52,6 +58,9 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         inputSearchField = new javax.swing.JTextField();
         initSearchAirline = new javax.swing.JButton();
         searchResultTextAreaForAirlineInfo = new javax.swing.JLabel();
+        tableISearchQueryDisplay = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableFormViewData = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,15 +203,61 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
 
         TabBasedInserter.addTab("Modify Airline", airlineManagement);
 
+        jLabel1.setText("Flight Code: ");
+
+        ArrayList<String> ar = new ArrayList<String>();
+        try {
+            String sql = "SELECT * FROM `flightowner`";
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", "sysadmin", "peter@2002");
+            conn.createStatement().executeUpdate("use nuvieliv_airlinemanagement");
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()==true) {
+                ar.add(rs.getString("ID"));
+            }
+        } catch (Exception e) {
+            new alertBox("Unknown Error Occurred: " + e, "System Failure", 0);
+        }
+        String[] str = ar.toArray(new String[ar.size()]);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(str));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(683, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(318, Short.MAX_VALUE))
+        );
+
+        jDesktopPane1.setLayer(jPanel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         TabBasedInserter.addTab("Add New Flight Data", jDesktopPane1);
@@ -256,14 +311,45 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         searchResultTextAreaForAirlineInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         searchResultTextAreaForAirlineInfo.setText("Search result will appear here");
 
+        tableFormViewData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "TIME", "MODE", "LOCATION", "STATUS", "ADDRESS"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableFormViewData);
+
+        javax.swing.GroupLayout tableISearchQueryDisplayLayout = new javax.swing.GroupLayout(tableISearchQueryDisplay);
+        tableISearchQueryDisplay.setLayout(tableISearchQueryDisplayLayout);
+        tableISearchQueryDisplayLayout.setHorizontalGroup(
+            tableISearchQueryDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        tableISearchQueryDisplayLayout.setVerticalGroup(
+            tableISearchQueryDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout resultPanelBoxLayout = new javax.swing.GroupLayout(resultPanelBox);
         resultPanelBox.setLayout(resultPanelBoxLayout);
         resultPanelBoxLayout.setHorizontalGroup(
             resultPanelBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(resultPanelBoxLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultPanelBoxLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(searchResultTextAreaForAirlineInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(resultPanelBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tableISearchQueryDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchResultTextAreaForAirlineInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         resultPanelBoxLayout.setVerticalGroup(
@@ -271,7 +357,9 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
             .addGroup(resultPanelBoxLayout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchResultTextAreaForAirlineInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(searchResultTextAreaForAirlineInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tableISearchQueryDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -320,7 +408,23 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
             ps.setString(1, inputSearchField.getText());
             ResultSet rs = ps.executeQuery();
             if (rs.next() == true) {
-                searchResultTextAreaForAirlineInfo.setText("Flight Code: " + rs.getString("ID"));
+                sql = "SELECT * FROM `flightplans` INNER JOIN `flightowner` ON `flightplans`.`FLIGHT_CODE` LIKE `flightowner`.`ID` INNER JOIN `locations` ON `locations`.`ID` LIKE `flightplans`.`LOCATION` WHERE `FLIGHT_CODE` LIKE ? ORDER BY TIME DESC;";
+                searchResultTextAreaForAirlineInfo.setText("Flight Code: " + rs.getString("ID") + " | Airline: " + rs.getString("AIRLINE") + " | Total Travels: ");
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, inputSearchField.getText());
+                rs = ps.executeQuery();
+                DefaultTableModel model = (DefaultTableModel)tableFormViewData.getModel();
+                int x = model.getRowCount();
+                while (x != 0) {
+                    x-=1;
+                    model.removeRow(x);
+                }
+                x = 0;
+                while (rs.next()==true) {
+                    x+=1;
+                    model.insertRow(0 , new Object[] {rs.getString("TIME"), retriveCode(rs.getInt("MODE")), rs.getString("LOCATION"), isCancelled(rs.getInt("IS_CANCELLED")), rs.getString("NAME") + ", " + rs.getString("ADDRESS")});
+                }
+                searchResultTextAreaForAirlineInfo.setText(searchResultTextAreaForAirlineInfo.getText() + x);
             } else {
                 new alertBox("The entered ID was not found in the database", "Airplane not found", 1);
             }
@@ -333,6 +437,25 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
     
     }//GEN-LAST:event_inputSearchFieldActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    String isCancelled(int i) {
+        if (i == 0)
+            return "ON TIME";
+        else if ( i == 1) 
+            return "CANCELLED";
+        else
+            return "LATE";
+    }
+    String retriveCode(int i) {
+        if (i == 0) {
+            return "Arrival";
+        } else {
+            return "Departure";
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -377,17 +500,23 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
     private javax.swing.JDesktopPane flightManagement;
     private javax.swing.JButton initSearchAirline;
     private javax.swing.JTextField inputSearchField;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel resultPanelBox;
     private javax.swing.JLabel searchResultTextAreaForAirlineInfo;
+    private javax.swing.JTable tableFormViewData;
+    private javax.swing.JPanel tableISearchQueryDisplay;
     private javax.swing.JLabel welcomeText;
     // End of variables declaration//GEN-END:variables
 }
