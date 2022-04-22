@@ -36,11 +36,14 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 Component[] arrivalStatus = new Component[] {arrivalStatus_1, arrivalStatus_2, arrivalStatus_3, arrivalStatus_4, arrivalStatus_5};
                 Component[] dateAndTime = new Component[] {dateAndTime_1, dateAndTime_2, dateAndTime_3, dateAndTime_4, dateAndTime_5};
                 Component[] statusOfFlight = new Component[] { statusOfFlight_1, statusOfFlight_2, statusOfFlight_3, statusOfFlight_4, statusOfFlight_5};                
+                int x = 0;
                 while(rs.next() ==true) {
+                    FlightCodes[x];
                     System.out.println(rs.getString("Time"));
-                    System.out.println(rs.getString("FLIGHT_CODE"));
+                    System.out.println();
                     System.out.println(arrivalStatus(rs.getString("MODE") ));
                     System.out.println(statusOfFlight(rs.getString("IS_CANCELLED")));
+                    x = x+1;
                 }
                 conn.close();
                
