@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -40,19 +44,32 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         aioText = new javax.swing.JLabel();
         currentTime = new javax.swing.JLabel();
         TabBasedInserter = new javax.swing.JTabbedPane();
-        flightManagement = new javax.swing.JDesktopPane();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
         airlineManagement = new javax.swing.JDesktopPane();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        flightID_1 = new javax.swing.JTextField();
+        daysModified = new javax.swing.JSpinner();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        monthModified = new javax.swing.JSpinner();
+        yearModified = new javax.swing.JSpinner();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        hourModified = new javax.swing.JSpinner();
+        minutesModified = new javax.swing.JSpinner();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
-        javax.swing.JRadioButton jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         locationAddNewFlightDisplay = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -65,9 +82,7 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         yearSelected = new javax.swing.JSpinner();
         hourSelected = new javax.swing.JSpinner();
         minuteSelected = new javax.swing.JSpinner();
-        ampm = new javax.swing.JComboBox<>();
         submitAddFlight = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         resultPanelBox = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -79,11 +94,13 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         tableISearchQueryDisplay = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableFormViewData = new javax.swing.JTable();
+        changeFlightStatus = new javax.swing.JScrollPane();
+        tableFormViewData1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         welcomeText.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
-        welcomeText.setText("Welcome, Peter...");
+        welcomeText.setText("Welcome....");
 
         aioText.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
         aioText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,7 +108,18 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
 
         currentTime.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         currentTime.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        currentTime.setText("3/1/2022 3:50:22");
+        currentTime.setText("");
+        class updateTimer extends TimerTask {
+            @Override
+            public void run() {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                currentTime.setText(dtf.format(now));
+            }
+        }
+
+        Timer timer = new Timer();
+        timer.schedule(new updateTimer(), 0, 1000);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,89 +143,163 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
 
         TabBasedInserter.setToolTipText("Insert Flight Data");
 
-        flightManagement.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(263, Short.MAX_VALUE))
-        );
-
-        flightManagement.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout flightManagementLayout = new javax.swing.GroupLayout(flightManagement);
-        flightManagement.setLayout(flightManagementLayout);
-        flightManagementLayout.setHorizontalGroup(
-            flightManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(flightManagementLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        flightManagementLayout.setVerticalGroup(
-            flightManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(flightManagementLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        TabBasedInserter.addTab("Change Flight Data", flightManagement);
-
         airlineManagement.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Flight Modification");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-        );
+        jLabel10.setText("FLIGHT ID:");
+
+        flightID_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flightID_1ActionPerformed(evt);
+            }
+        });
+        flightID_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                flightID_1KeyTyped(evt);
+            }
+        });
+
+        daySelected.setValue(new Date().getDay());
+        daysModified.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                daysModifiedComponentHidden(evt);
+            }
+        });
+        daysModified.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                daysModifiedInputMethodTextChanged(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Date");
+
+        jLabel12.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Month");
+
+        monthSelected.setValue(new Date().getMonth());
+
+        yearSelected.setValue(new Date().getYear() + 1900);
+
+        jLabel13.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Year");
+
+        jLabel14.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Hour");
+
+        jLabel15.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Minute");
+
+        jLabel16.setText("Flight Status: ");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ON TIME", "DELAYED", "CANCELLED"}));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Modify");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("FLIGHT INFORMATION WILL BE DISPLAYED HERE");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(daysModified, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(64, 64, 64)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(monthModified, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(61, 61, 61)
+                                        .addComponent(yearModified, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(69, 69, 69)
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hourModified, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(minutesModified, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(flightID_1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(207, 207, 207)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(flightID_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(daysModified, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monthModified, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearModified, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hourModified, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minutesModified, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addComponent(jButton1)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         airlineManagement.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -219,7 +321,7 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        TabBasedInserter.addTab("Modify Airline", airlineManagement);
+        TabBasedInserter.addTab("Modify Flight", airlineManagement);
 
         jLabel1.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
         jLabel1.setText("Flight Code: ");
@@ -249,8 +351,21 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         jLabel2.setText("Mode");
 
         jRadioButton1.setText("Arrival");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
+        ButtonGroup arrival_depart = new ButtonGroup();
+        arrival_depart.add(jRadioButton1);
+        arrival_depart.add(jRadioButton2);
         jRadioButton2.setText("Departure");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
         jLabel3.setText("Location: ");
@@ -314,8 +429,6 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
 
         yearSelected.setValue(new Date().getYear() + 1900);
 
-        ampm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
-
         submitAddFlight.setText("Insert");
         submitAddFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,38 +436,36 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Source Serif Pro", 0, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("AM/PM");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+                .addContainerGap(115, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(228, 228, 228)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(129, Short.MAX_VALUE))
+                        .addContainerGap(138, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(134, 134, 134)
                         .addComponent(jRadioButton1)
                         .addGap(26, 26, 26)
                         .addComponent(jRadioButton2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(locationAddNewFlightDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitAddFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(176, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(daySelected, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -377,17 +488,7 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(minuteSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(locationAddNewFlightDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ampm, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,25 +504,23 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton1)
                     .addComponent(locationAddNewFlightDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77)
+                .addGap(80, 80, 80)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(daySelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(yearSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hourSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(minuteSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ampm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                    .addComponent(minuteSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addComponent(submitAddFlight)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jPanel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -463,13 +562,13 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 238, Short.MAX_VALUE)
+                        .addGap(0, 255, Short.MAX_VALUE)
                         .addComponent(AirlineCodeInputText, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(initSearchAirline)
-                        .addGap(0, 255, Short.MAX_VALUE)))
+                        .addGap(0, 270, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -514,7 +613,7 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         );
         tableISearchQueryDisplayLayout.setVerticalGroup(
             tableISearchQueryDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout resultPanelBoxLayout = new javax.swing.GroupLayout(resultPanelBox);
@@ -554,6 +653,59 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         );
 
         TabBasedInserter.addTab("Get Airline Information", jDesktopPane2);
+
+        tableFormViewData1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "TIME", "AIRLINE CODE", "LOCATION", "MODE", "STATUS", "ADDRESS", "AIRLINE OWNER"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        System.out.println("[CONSOLE] VIEW QUERY INITIATED");
+        class updateFlightState extends TimerTask {
+            @Override
+            public void run() {
+                try {
+                    String sql = "SELECT TIME, ADDRESS, FLIGHT_CODE, MODE, LOCATION, IS_CANCELLED, AIRLINE, NAME FROM `flightplans` INNER JOIN `locations` on `flightplans`.`LOCATION` = `locations`.`ID` INNER JOIN `flightowner` ON `FLIGHT_CODE` = `flightowner`.`ID` WHERE TIME > now() ORDER BY TIME;";
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", "sysadmin", "peter@2002");
+                    conn.createStatement().executeUpdate("use nuvieliv_airlinemanagement");
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next() == true) {
+                        DefaultTableModel model2 = (DefaultTableModel)tableFormViewData1.getModel();
+                        int x = model2.getRowCount();
+                        while (x != 0) {
+                            x-=1;
+                            model2.removeRow(x);
+                        }
+                        x = 0;
+                        while (rs.next()==true) {
+                            x+=1;
+                            model2.insertRow(0 , new Object[] {rs.getString("TIME"), rs.getString("FLIGHT_CODE"), rs.getString("LOCATION"), rs.getString("MODE"), isCancelled(rs.getInt("IS_CANCELLED")), rs.getString("ADDRESS"), rs.getString("AIRLINE")});
+                        }
+                    } else {
+                        new alertBox("No new arrivals/departure", "No Data", 1);
+                    }
+                } catch (Exception e) {
+                    new alertBox("Unknown Error Occurred: " + e, "System Failure", 0);
+                }
+            }
+        }
+
+        Timer timer2 = new Timer();
+        timer2.schedule(new updateFlightState(), 0, 1000);
+        changeFlightStatus.setViewportView(tableFormViewData1);
+
+        TabBasedInserter.addTab("View Flight List", changeFlightStatus);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -611,40 +763,73 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
     }//GEN-LAST:event_initSearchAirlineActionPerformed
 
     private void inputSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSearchFieldActionPerformed
-    
+
     }//GEN-LAST:event_inputSearchFieldActionPerformed
 
     private void submitAddFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAddFlightActionPerformed
         int date = (Integer) daySelected.getValue();
-        if (date > 24 || date < 0) {
+        if (date > 31 || date < 0) {
             new alertBox("Invalid date entered inside field. Valid dates between 0 and 24", "Invalid Input Detected", 1);
             return;
         }
         int month = (Integer) monthSelected.getValue();
         if (date > 12 || date < 1) {
             new alertBox("Invalid month entered inside field. Valid month between 1 and 12", "Invalid Input Detected", 1);
+            return;
         }
         int year = (Integer) yearSelected.getValue();
-        if (year < new Date().getYear() + 1900) {
+        if (year <= new Date().getYear() + 1899) {
             new alertBox("Invalid year entered inside field. Valid year should be grate", "Invalid Input Detected", 1);
+            return;
         }
         int hours = (Integer) hourSelected.getValue();
         if (hours > 24 && hours < 0) {
             new alertBox("Invalid hour entered inside field. hour should be between 0 and 24", "Invalid Input Detected", 1);
+            return;
         }
         int minutes = (Integer) minuteSelected.getValue();
         if (minutes > 60 && minutes < 0) {
             new alertBox("Invalid minute entered inside field. minute should be between 0 and 60", "Invalid Input Detected", 1);
+            return;
+        }
+        if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected() ) {
+            new alertBox("Invalid selection at Departure or Arrival option", "Error in Radio Button Selection", 1);
+            return;
+        }
+        if (jComboBox1.getSelectedItem().toString() == "" || locationAddNewFlightDisplay.getSelectedItem().toString() == "") {
+            new alertBox("Invalid selection at Flight Code or/and Location", "Error in ComboBox Selection", 1);
+            return;
+        }
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", "sysadmin", "peter@2002");
+            conn.createStatement().executeUpdate("use nuvieliv_airlinemanagement");
+            String sql = "SELECT * FROM `locations` WHERE `NAME` LIKE ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, locationAddNewFlightDisplay.getSelectedItem().toString());
+            ResultSet rs = ps.executeQuery();
+            String curr_local = "";
+            if (rs.next() == true) {
+                curr_local = rs.getString("ID");
+            } else {
+                new alertBox("We sent in the right name but it seems like the server sent a question mark back.. Opps.. My Bad", "Invalid Address", 1);
+                return;
+            }
+
+            conn.createStatement().executeUpdate("use nuvieliv_airlinemanagement");
+            String date_formatted = yearSelected.getValue() + "-" + monthSelected.getValue() + "-" + daySelected.getValue() + " " + hourSelected.getValue() + ":" + minuteSelected.getValue() + ":00.000000";
+            System.out.println(date_formatted);
+            sql = "INSERT INTO `flightplans` (`ID`, `FLIGHT_CODE`, `TIME`, `MODE`, `LOCATION`, `IS_CANCELLED`) VALUES (NULL, ?, ?, ?, ?, 0)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, jComboBox1.getSelectedItem().toString());
+            ps.setString(2, date_formatted);
+            ps.setString(3, modeFinder());
+            ps.setString(4, curr_local);
+            ps.executeUpdate();
+            new alertBox("New Flight information for FLIGHT ID " + jComboBox1.getSelectedItem().toString() + " was added", "New Flight Added", 2);
+        } catch (Exception e) {
+            new alertBox("Error occurred while executing query. " + e, "Unknown Error in SQL", 0);
         }
     }//GEN-LAST:event_submitAddFlightActionPerformed
-
-    private void locationAddNewFlightDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationAddNewFlightDisplayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_locationAddNewFlightDisplayActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void daySelectedInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_daySelectedInputMethodTextChanged
 
@@ -654,6 +839,136 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_daySelectedComponentHidden
 
+    private void locationAddNewFlightDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationAddNewFlightDisplayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_locationAddNewFlightDisplayActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void flightID_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flightID_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_flightID_1ActionPerformed
+
+    private void daysModifiedComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_daysModifiedComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_daysModifiedComponentHidden
+
+    private void daysModifiedInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_daysModifiedInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_daysModifiedInputMethodTextChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (flightID_1.getText() != "") {
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", "sysadmin", "peter@2002");
+                conn.createStatement().executeUpdate("use nuvieliv_airlinemanagement");
+                String sql = "SELECT * FROM `flightplans` WHERE `ID` LIKE ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, flightID_1.getText());
+                ResultSet rs = ps.executeQuery();
+                if (rs.next() == true) {
+                    if ((Integer)daysModified.getValue() == 0 && (Integer)monthModified.getValue() == 0 && (Integer)yearModified.getValue() == 0) {
+                        sql = "UPDATE `flightplans` SET `IS_CANCELLED` = ? WHERE `flightplans`.`ID` = ?;";
+                        ps = conn.prepareStatement(sql);
+                        ps.setString(2, flightID_1.getText());
+                        ps.setString(1, getStatusUpdationValue(jComboBox2.getSelectedItem().toString()));
+                        ps.executeUpdate();
+                        new alertBox("Date and time is not modified", "Modification Skipped", 2);
+                    } else {
+                        int date = (Integer) daysModified.getValue();
+                        if (date > 24 || date < 0) {
+                            new alertBox("Invalid date entered inside field. Valid dates between 0 and 24", "Invalid Input Detected", 1);
+                            return;
+                        }
+                        int month = (Integer) monthModified.getValue();
+                        if (date > 12 || date < 1) {
+                            new alertBox("Invalid month entered inside field. Valid month between 1 and 12", "Invalid Input Detected", 1);
+                            return;
+                        }
+                        int year = (Integer) yearModified.getValue();
+                        if (year < new Date().getYear() + 1900) {
+                            new alertBox("Invalid year entered inside field. Valid year should be grate", "Invalid Input Detected", 1);
+                            return;
+                        }
+                        int hours = (Integer) hourModified.getValue();
+                        if (hours > 24 && hours < 0) {
+                            new alertBox("Invalid hour entered inside field. hour should be between 0 and 24", "Invalid Input Detected", 1);
+                            return;
+                        }
+                        int minutes = (Integer) minutesModified.getValue();
+                        if (minutes > 60 && minutes < 0) {
+                            new alertBox("Invalid minute entered inside field. minute should be between 0 and 60", "Invalid Input Detected", 1);
+                            return;
+                        }
+                        String date_formatted = yearModified.getValue() + "-" + monthModified.getValue() + "-" + daysModified.getValue() + " " + hourModified.getValue() + ":" + minutesModified.getValue() + ":00.000000";
+                        sql = "UPDATE `flightplans` SET `IS_CANCELLED` = ?, `TIME` = ? WHERE `flightplans`.`ID` = ?;";
+                        ps = conn.prepareStatement(sql);
+                        ps.setString(3, flightID_1.getText());
+                        ps.setString(2, date_formatted);
+                        ps.setString(1, getStatusUpdationValue(jComboBox2.getSelectedItem().toString()));
+                        ps.executeUpdate();
+                        new alertBox("Data was modified", "Data Modified", 2);
+                    }
+                } else {
+                    new alertBox("No airplane flight data with entered ID", "Invalid ID", 0);
+                }
+            } catch (Exception e) {
+                new alertBox("An error occurred while processing request. " + e, "Error Occurred", 0);
+            } 
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private String getStatusUpdationValue(String s) {
+        switch (s) {
+            case "ON TIME":
+                return "0";
+            case "DELAYED":
+                return "1";
+            case "CANCELLED":
+                return "2";
+            default:
+                return "";
+        }
+    }
+    private void flightID_1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_flightID_1KeyTyped
+        try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", "sysadmin", "peter@2002");
+                conn.createStatement().executeUpdate("use nuvieliv_airlinemanagement");
+                String sql = "SELECT * FROM `flightplans` WHERE `ID` LIKE ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, flightID_1.getText());
+                ResultSet rs = ps.executeQuery();
+                if (rs.next() == true) {
+                    jLabel17.setText("ID Matched with Flight Record " + rs.getString("FLIGHT_CODE") + " scheduled for flight on " + rs.getString("TIME"));
+                } else {
+                    jLabel17.setText("No matching data found. Check ID");
+                }
+            } catch (Exception e) {
+                new alertBox("An error occurred while processing request. " + e, "Error Occurred", 0);
+            }
+    }//GEN-LAST:event_flightID_1KeyTyped
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    String modeFinder() {
+        if (jRadioButton1.isSelected()) {
+            return "0";
+        } else {
+            return "1";
+        }
+    }
     String isCancelled(int i) {
         if (i == 0)
             return "ON TIME";
@@ -662,6 +977,7 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
         else
             return "LATE";
     }
+    
     String retriveCode(int i) {
         if (i == 0) {
             return "Arrival";
@@ -709,44 +1025,58 @@ public class AirlineManagementAddAirline extends javax.swing.JFrame {
     private javax.swing.JTabbedPane TabBasedInserter;
     private javax.swing.JLabel aioText;
     private javax.swing.JDesktopPane airlineManagement;
-    private javax.swing.JComboBox<String> ampm;
+    private javax.swing.JScrollPane changeFlightStatus;
     private javax.swing.JLabel currentTime;
     private javax.swing.JSpinner daySelected;
-    private javax.swing.JDesktopPane flightManagement;
+    private javax.swing.JSpinner daysModified;
+    private javax.swing.JTextField flightID_1;
+    private javax.swing.JSpinner hourModified;
     private javax.swing.JSpinner hourSelected;
     private javax.swing.JButton initSearchAirline;
     private javax.swing.JTextField inputSearchField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> locationAddNewFlightDisplay;
     private javax.swing.JSpinner minuteSelected;
+    private javax.swing.JSpinner minutesModified;
+    private javax.swing.JSpinner monthModified;
     private javax.swing.JSpinner monthSelected;
     private javax.swing.JPanel resultPanelBox;
     private javax.swing.JLabel searchResultTextAreaForAirlineInfo;
     private javax.swing.JButton submitAddFlight;
     private javax.swing.JTable tableFormViewData;
+    private javax.swing.JTable tableFormViewData1;
     private javax.swing.JPanel tableISearchQueryDisplay;
     private javax.swing.JLabel welcomeText;
+    private javax.swing.JSpinner yearModified;
     private javax.swing.JSpinner yearSelected;
     // End of variables declaration//GEN-END:variables
 }

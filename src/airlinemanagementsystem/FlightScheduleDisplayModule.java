@@ -31,7 +31,6 @@ public class FlightScheduleDisplayModule extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         MainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -304,7 +303,6 @@ public class FlightScheduleDisplayModule extends javax.swing.JFrame {
     private javax.swing.JLabel IsState1;
     private javax.swing.JLabel IsState2;
     private javax.swing.JPanel MainPanel;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

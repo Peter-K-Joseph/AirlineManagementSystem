@@ -6,7 +6,7 @@ package airlinemanagementsystem;
 import java.sql.*;
 /**
  *
- * @author peter
+ * @author chiranmai
  */
 
 //class alertBox

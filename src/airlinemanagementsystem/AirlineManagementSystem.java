@@ -16,8 +16,8 @@ public class AirlineManagementSystem {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new loginForm().setVisible(true);
                 new CurrentTimeAndDate().setVisible(true);
+                new loginForm().setVisible(true);
             }
         });
     }
