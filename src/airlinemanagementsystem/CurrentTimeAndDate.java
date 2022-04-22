@@ -37,13 +37,65 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 Component[] dateAndTime = new Component[] {dateAndTime_1, dateAndTime_2, dateAndTime_3, dateAndTime_4, dateAndTime_5};
                 Component[] statusOfFlight = new Component[] { statusOfFlight_1, statusOfFlight_2, statusOfFlight_3, statusOfFlight_4, statusOfFlight_5};                
                 int x = 0;
-                while(rs.next() ==true) {
-                    FlightCodes[x];
-                    System.out.println(rs.getString("Time"));
-                    System.out.println();
-                    System.out.println(arrivalStatus(rs.getString("MODE") ));
-                    System.out.println(statusOfFlight(rs.getString("IS_CANCELLED")));
-                    x = x+1;
+                if (rs.next() == true) {
+                    flightCode_1.setText(rs.getString("FLIGHT_CODE"));
+                    statusOfFlight_1.setText(statusOfFlight(rs.getString("IS_CANCELLED")));
+                    statusOfFlight_1.setForeground(getStatusIndicator(rs.getString("IS_CANCELLED")));
+                    dateAndTime_1.setText(rs.getString("Time"));
+                    arrivalStatus_1.setText(arrivalStatus(rs.getString("MODE")));
+                } else {
+                    flightCode_1.setText("");
+                    statusOfFlight_1.setText("");
+                    dateAndTime_1.setText("");
+                    arrivalStatus_1.setText("");
+                }
+                if (rs.next() == true) {
+                    flightCode_2.setText(rs.getString("FLIGHT_CODE"));
+                    statusOfFlight_2.setText(statusOfFlight(rs.getString("IS_CANCELLED")));
+                    statusOfFlight_2.setForeground(getStatusIndicator(rs.getString("IS_CANCELLED")));
+                    dateAndTime_2.setText(rs.getString("Time"));
+                    arrivalStatus_2.setText(arrivalStatus(rs.getString("MODE")));
+                } else {
+                    flightCode_2.setText("");
+                    statusOfFlight_2.setText("");
+                    dateAndTime_2.setText("");
+                    arrivalStatus_2.setText("");
+                }
+                if (rs.next() == true) {
+                    flightCode_3.setText(rs.getString("FLIGHT_CODE"));
+                    statusOfFlight_3.setForeground(getStatusIndicator(rs.getString("IS_CANCELLED")));
+                    statusOfFlight_3.setText(statusOfFlight(rs.getString("IS_CANCELLED")));
+                    dateAndTime_3.setText(rs.getString("Time"));
+                    arrivalStatus_3.setText(arrivalStatus(rs.getString("MODE")));
+                } else {
+                    flightCode_3.setText("");
+                    statusOfFlight_3.setText("");
+                    dateAndTime_3.setText("");
+                    arrivalStatus_3.setText("");
+                }
+                if (rs.next() == true) {
+                    flightCode_4.setText(rs.getString("FLIGHT_CODE"));
+                    statusOfFlight_4.setForeground(getStatusIndicator(rs.getString("IS_CANCELLED")));
+                    statusOfFlight_4.setText(statusOfFlight(rs.getString("IS_CANCELLED")));
+                    dateAndTime_4.setText(rs.getString("Time"));
+                    arrivalStatus_4.setText(arrivalStatus(rs.getString("MODE")));
+                } else {
+                    flightCode_4.setText("");
+                    statusOfFlight_4.setText("");
+                    dateAndTime_4.setText("");
+                    arrivalStatus_4.setText("");
+                }
+                if (rs.next() == true) {
+                    flightCode_5.setText(rs.getString("FLIGHT_CODE"));
+                    statusOfFlight_5.setForeground(getStatusIndicator(rs.getString("IS_CANCELLED")));
+                    statusOfFlight_5.setText(statusOfFlight(rs.getString("IS_CANCELLED")));
+                    dateAndTime_5.setText(rs.getString("Time"));
+                    jLabel8.setText(arrivalStatus(rs.getString("MODE")));
+                } else {
+                    flightCode_5.setText("");
+                    statusOfFlight_5.setText("");
+                    dateAndTime_5.setText("");
+                    jLabel8.setText("");
                 }
                 conn.close();
                
@@ -61,6 +113,17 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
             case "1":
                 return "Departure";
             default: return "";
+        }
+    }
+    private java.awt.Color getStatusIndicator(String i) {
+        switch (i) {
+            case "0": 
+                return new java.awt.Color(0, 255, 0);
+            case "1": 
+                return new java.awt.Color(255, 255, 0);
+            case "2": 
+                return new java.awt.Color(255, 0, 0);
+            default: return new java.awt.Color(0, 0, 0);
         }
     }
     private String statusOfFlight(String i ) 
@@ -367,7 +430,7 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
             }
         }
         Timer timer = new Timer();
-        timer.schedule(new updateTimer(),0,5000);
+        timer.schedule(new updateTimer(),0,1000);
 
         jPanel2.setBackground(new java.awt.Color(50, 50, 50));
 
@@ -398,7 +461,7 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 .addComponent(flightCode_1)
                 .addGap(88, 88, 88)
                 .addComponent(arrivalStatus_1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dateAndTime_1)
                 .addGap(85, 85, 85)
                 .addComponent(statusOfFlight_1)
@@ -498,10 +561,11 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 .addComponent(flightCode_5)
                 .addGap(85, 85, 85)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
                 .addComponent(dateAndTime_5)
-                .addGap(93, 93, 93)
-                .addComponent(statusOfFlight_5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(statusOfFlight_5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         arrivalStatus_5Layout.setVerticalGroup(
             arrivalStatus_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,8 +618,9 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 .addComponent(arrivalStatus_3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dateAndTime_3)
-                .addGap(93, 93, 93)
-                .addComponent(statusOfFlight_3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(statusOfFlight_3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,8 +666,9 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 .addComponent(arrivalStatus_4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dateAndTime_4)
-                .addGap(93, 93, 93)
-                .addComponent(statusOfFlight_4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(statusOfFlight_4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -621,25 +687,20 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(arrivalStatus_5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, 0)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(presentDateAndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
+                .addComponent(presentDateAndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+            .addComponent(jSeparator1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(arrivalStatus_5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,9 +709,9 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(presentDateAndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -660,24 +721,22 @@ public class CurrentTimeAndDate extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(arrivalStatus_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(253, 253, 253))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
